@@ -1,2 +1,1 @@
-# Sample.WebApi
-WebApi 專案範例
+# WebApi 專案範例
