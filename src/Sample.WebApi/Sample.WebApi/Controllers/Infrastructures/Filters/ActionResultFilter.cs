@@ -9,7 +9,7 @@ namespace Sample.WebApi.Controllers.Infrastructures.Filters
     /// <summary>
     /// 客制 API 回傳格式
     /// </summary>
-    public abstract class ActionResultFilter : IAsyncActionFilter
+    public class ActionResultFilter : IAsyncActionFilter
     {
         /// <summary>
         /// Action Execution 
