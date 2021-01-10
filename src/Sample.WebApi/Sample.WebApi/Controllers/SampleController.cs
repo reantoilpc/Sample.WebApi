@@ -3,19 +3,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Sample.WebApi.Controllers
 {
+    /// <summary>
+    /// API 範例
+    /// </summary>
     [ApiController]
     [Route("api/v1/[controller]")]
     public class SampleController : ControllerBase
     {
-        public SampleController()
-        {
-        }
-
         /// <summary>
-        /// 使用者名稱
+        /// 取得使用者名稱
         /// </summary>
         /// <returns></returns>
-        [HttpGet()]
+        [HttpGet("UserName")]
         public string GetUserName()
         {
             return "rayhsu";
