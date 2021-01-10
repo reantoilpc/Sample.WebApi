@@ -15,6 +15,7 @@ namespace Sample.WebApi.Infrastructures.Extensions
         /// <param name="options"></param>
         public static void AddCustomerFilters(this MvcOptions options)
         {
+            options.Filters.Add<ExceptionFilter>();
             options.Filters.Add<ActionResultFilter>();
         }
         

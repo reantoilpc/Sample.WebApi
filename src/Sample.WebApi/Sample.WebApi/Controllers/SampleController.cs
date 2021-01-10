@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Sample.WebApi.Controllers.ViewModels;
 
 namespace Sample.WebApi.Controllers
 {
@@ -14,11 +15,19 @@ namespace Sample.WebApi.Controllers
         /// <summary>
         /// 取得使用者名稱
         /// </summary>
-        /// <returns></returns>
         [HttpGet("UserName")]
         public string GetUserName()
         {
             return "rayhsu";
+        }
+
+        /// <summary>
+        /// 取得使用者們
+        /// </summary>
+        [HttpGet("users")]
+        public IEnumerable<UserViewModel> GetUsers([FromQuery] string name)
+        {
+            throw new Exception("有 bug !!");
         }
     }
 }
