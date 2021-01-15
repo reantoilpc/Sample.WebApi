@@ -15,3 +15,8 @@
 
 - ActionResultFilter 當 API 呼叫成功，回傳格式
 - ExceptionResultFilter 當 Exception 發生時，回傳格式
+
+Extension
+
+- FilterExtension
+- ServiceConfigurationExtension
