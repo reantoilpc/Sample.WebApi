@@ -8,16 +8,14 @@ namespace Sample.WebApi.Infrastructures.Extensions
     /// </summary>
     public static class FilterExtension
     {
-
         /// <summary>
         /// 加入客制 Filters
         /// </summary>
         /// <param name="options"></param>
         public static void AddCustomerFilters(this MvcOptions options)
         {
-            options.Filters.Add<ExceptionFilter>();
+            options.Filters.Add<ExceptionResultFilter>();
             options.Filters.Add<ActionResultFilter>();
         }
-        
     }
 }

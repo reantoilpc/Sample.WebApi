@@ -9,7 +9,7 @@ namespace Sample.WebApi.Controllers.Infrastructures.Filters
     /// <summary>
     /// Exception Filter
     /// </summary>
-    public class ExceptionFilter : IAsyncExceptionFilter
+    public class ExceptionResultFilter : IAsyncExceptionFilter
     {
         /// <summary>
         /// On Exception 
