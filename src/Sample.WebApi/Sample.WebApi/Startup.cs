@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Sample.WebApi.Controllers;
 using Sample.WebApi.Controllers.Infrastructures.Filters;
 using Sample.WebApi.Infrastructures.Extensions;
 
@@ -30,14 +31,12 @@ namespace Sample.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers(options =>
-            {
-                options.AddCustomerFilters();
-            });
+            services.AddCustomServices();
+            services.AddControllers(options => { options.AddCustomFilters(); });
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Sample.WebApi", Version = "v1" });
-                
+                c.SwaggerDoc("v1", new OpenApiInfo {Title = "Sample.WebApi", Version = "v1"});
+
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
@@ -60,10 +59,7 @@ namespace Sample.WebApi
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

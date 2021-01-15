@@ -12,7 +12,7 @@ namespace Sample.WebApi.Infrastructures.Extensions
         /// 加入客制 Filters
         /// </summary>
         /// <param name="options"></param>
-        public static void AddCustomerFilters(this MvcOptions options)
+        public static void AddCustomFilters(this MvcOptions options)
         {
             options.Filters.Add<ExceptionResultFilter>();
             options.Filters.Add<ActionResultFilter>();
