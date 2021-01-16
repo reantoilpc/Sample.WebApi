@@ -1,11 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Sample.WebApi.Controllers.Parameters
+namespace Sample.Service.Dtos
 {
     /// <summary>
     /// 登入參數
     /// </summary>
-    public class AuthenticateParameter
+    public class AuthenticateDto
     {
         /// <summary>
         /// 帳號

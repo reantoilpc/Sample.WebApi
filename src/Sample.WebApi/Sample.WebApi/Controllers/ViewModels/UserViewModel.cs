@@ -6,22 +6,22 @@ namespace Sample.WebApi.Controllers.ViewModels
     public class UserViewModel
     {
         /// <summary>
-        /// 使用者編號
+        /// 流水號
         /// </summary>
-        public int UserId { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
-        /// 使用者姓名
+        /// 使用者帳號
         /// </summary>
-        public string Name { get; set; }
+        public string Account { get; set; }
 
         /// <summary>
-        /// 使用者地址
+        /// 使用者名稱
         /// </summary>
-        public string Address { get; set; }
+        public string Username { get; set; }
 
         /// <summary>
-        /// 使用者信箱
+        /// Email
         /// </summary>
         public string Email { get; set; }
     }
