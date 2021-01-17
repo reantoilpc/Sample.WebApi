@@ -28,7 +28,7 @@ namespace Sample.WebApi.Controllers.Infrastructures.Filters
                     Id = Guid.NewGuid().ToString(),
                     Method = $"{context.HttpContext.Request.Method} {context.HttpContext.Request.Path}",
                     Version = "1.0",
-                    Status = "1000",
+                    Status = "Success",
                     Data = contextResult?.Value
                 });
             }
