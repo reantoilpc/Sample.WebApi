@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Sample.Common.Helpers.Auth;
 using Sample.Service.Implements;
 using Sample.Service.Interfaces;
 
@@ -16,6 +17,8 @@ namespace Sample.WebApi.Infrastructures.Extensions
         public static void AddCustomServices(this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddSingleton<AppSettings>();
         }
     }
 }
