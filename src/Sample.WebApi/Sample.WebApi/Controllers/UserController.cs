@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -33,13 +34,26 @@ namespace Sample.WebApi.Controllers
         /// 使用者驗證
         /// </summary>
         /// <returns></returns>
-        [AllowAnonymous] 
+        [AllowAnonymous]
         [HttpPost("authenticate")]
         public string Authenticate([FromBody] AuthenticateParameter parameter)
         {
             var dto = this._mapper.Map<AuthenticateDto>(parameter);
             var token = _userService.Authenticate(dto);
             return token;
+        }
+
+        /// <summary>
+        /// 取得所有使用者
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet("all")]
+        public IEnumerable<UserViewModel> GetUsers()
+        {
+            IEnumerable<UserDto> users = _userService.GetUsers();
+            var userViewModels = this._mapper.Map<IEnumerable<UserViewModel>>(users);
+            return userViewModels;
         }
     }
 }

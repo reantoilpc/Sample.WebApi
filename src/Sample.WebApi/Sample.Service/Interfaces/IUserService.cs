@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Sample.Service.Dtos;
 
 namespace Sample.Service.Interfaces
@@ -16,5 +17,11 @@ namespace Sample.Service.Interfaces
         /// <param name="userId"></param>
         /// <returns></returns>
         UserDto GetUser(int userId);
+
+        /// <summary>
+        /// 取得所有使用者
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<UserDto> GetUsers();
     }
 }

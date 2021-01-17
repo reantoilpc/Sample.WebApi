@@ -46,5 +46,14 @@ namespace Sample.Service.Implements
             var userDto = _mapper.Map<UserDto>(user);
             return userDto;
         }
+
+        /// <summary>
+        /// 取得所有使用者
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<UserDto> GetUsers()
+        {
+            return this._mapper.Map<IEnumerable<UserDto>>(_users);
+        }
     }
 }

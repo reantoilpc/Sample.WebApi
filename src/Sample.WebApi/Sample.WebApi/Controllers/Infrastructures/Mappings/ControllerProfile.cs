@@ -1,6 +1,7 @@
 using AutoMapper;
 using Sample.Service.Dtos;
 using Sample.WebApi.Controllers.Parameters;
+using Sample.WebApi.Controllers.ViewModels;
 
 namespace Sample.WebApi.Controllers.Infrastructures.Mappings
 {
@@ -15,6 +16,7 @@ namespace Sample.WebApi.Controllers.Infrastructures.Mappings
         public ControllerProfile()
         {
             this.CreateMap<AuthenticateParameter, AuthenticateDto>();
+            this.CreateMap<UserDto, UserViewModel>();
         }
     }
 }
