@@ -1,6 +1,7 @@
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Authentication;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,34 +38,39 @@ namespace Sample.WebApi.Infrastructures.Middlewares
         /// <returns></returns>
         public async Task Invoke(HttpContext context, IUserService userService)
         {
-            var header = context.Request.Headers["AccessToken"];
+            var header = context.Request.Headers["Authorization"];
             var token = header.FirstOrDefault()?.Split(" ").Last();
 
-            if (token != null)
-            {
-                AttachUserToContext(context, userService, token);
-            }
+            if (token != null) AttachUserToContext(context, userService, token);
 
             await _next(context);
         }
 
         private void AttachUserToContext(HttpContext context, IUserService userService, string token)
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
-            tokenHandler.ValidateToken(token, new TokenValidationParameters()
+            try
             {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(key),
-                ValidateIssuer = false,
-                ValidateAudience = false,
-                ClockSkew = TimeSpan.Zero
-            }, out SecurityToken validatedToken);
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+                tokenHandler.ValidateToken(token, new TokenValidationParameters()
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ClockSkew = TimeSpan.Zero
+                }, out var validatedToken);
 
-            var jwtToken = (JwtSecurityToken) validatedToken;
-            var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
-
-            context.Items["User"] = userService.GetUser(userId);
+                var jwtToken = (JwtSecurityToken) validatedToken;
+                var claim = jwtToken.Claims.First(x => x.Type == "Id");
+                var userId = int.Parse(claim.Value);
+                
+                context.Items["User"] = userService.GetUser(userId);
+            }
+            catch (Exception exception)
+            {
+                throw new AuthenticationException("您無權限存取！！");
+            }
         }
     }
 }

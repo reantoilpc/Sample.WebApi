@@ -27,7 +27,7 @@ namespace Sample.Service.Implements
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
                 Subject = identity,
-                Expires = DateTime.UtcNow.AddMinutes(30),
+                Expires = DateTime.UtcNow.AddHours(6),
                 SigningCredentials = credentials
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);

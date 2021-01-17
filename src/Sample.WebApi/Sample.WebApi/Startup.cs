@@ -18,6 +18,7 @@ using Sample.Common.Helpers.Auth;
 using Sample.WebApi.Controllers;
 using Sample.WebApi.Controllers.Infrastructures.Filters;
 using Sample.WebApi.Infrastructures.Extensions;
+using Sample.WebApi.Infrastructures.Middlewares;
 
 namespace Sample.WebApi
 {
@@ -81,6 +82,7 @@ namespace Sample.WebApi
 
             app.UseRouting();
 
+            app.UseMiddleware<JwtMiddleware>();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
