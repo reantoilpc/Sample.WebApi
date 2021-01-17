@@ -9,5 +9,12 @@ namespace Sample.Service.Interfaces
         /// </summary>
         /// <param name="dto"></param>
         string Authenticate(AuthenticateDto dto);
+
+        /// <summary>
+        /// 使用者資訊
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        UserDto GetUser(int userId);
     }
 }
