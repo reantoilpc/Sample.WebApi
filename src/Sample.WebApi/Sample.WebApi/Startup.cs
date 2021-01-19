@@ -49,9 +49,9 @@ namespace Sample.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddCustomServices();
             services.AddControllers(options => { options.AddCustomFilters(); });
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddSwaggerGen(c =>
             {
@@ -83,7 +83,7 @@ namespace Sample.WebApi
             app.UseRouting();
 
             app.UseMiddleware<JwtMiddleware>();
-            app.UseAuthorization();
+            // app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }

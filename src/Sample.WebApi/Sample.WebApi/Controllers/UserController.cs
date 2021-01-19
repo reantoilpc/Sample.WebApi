@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sample.Service.Dtos;
 using Sample.Service.Interfaces;
+using Sample.WebApi.Controllers.Infrastructures.Attribute;
 using Sample.WebApi.Controllers.Parameters;
 using Sample.WebApi.Controllers.ViewModels;
 
@@ -34,7 +34,6 @@ namespace Sample.WebApi.Controllers
         /// 使用者驗證
         /// </summary>
         /// <returns></returns>
-        [AllowAnonymous]
         [HttpPost("authenticate")]
         public string Authenticate([FromBody] AuthenticateParameter parameter)
         {
